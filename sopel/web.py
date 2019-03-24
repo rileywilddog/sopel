@@ -19,7 +19,7 @@ import sys
 
 import requests
 
-from sopel.tools import deprecated
+from .tools import deprecated
 
 if sys.version_info.major < 3:
     import httplib
@@ -27,10 +27,9 @@ else:
     import http.client as httplib
 
 # Imports to facilitate transition from sopel.web to sopel.tools.web
-from sopel.tools.web import (  # noqa
+from .tools.web import (  # noqa
     USER_AGENT,
-    default_headers,
-    ca_certs,
+    DEFAULT_HEADERS as default_headers,
     entity,
     decode,
     quote,
@@ -43,6 +42,10 @@ from sopel.tools.web import (  # noqa
 
 # Deprecated sopel.web methods are not moved, so they won't be accessible from the
 # new module location (to discourage new code from using them).
+
+ca_certs = None
+# This doesn't appear to be used anywhere any more, so it lives in the to-be-removed
+# version of sopel.web. At some point it was used to cover an SSL edge case, long ago.
 
 
 # HTTP GET
